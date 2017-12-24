@@ -1,7 +1,11 @@
-package com.lemmon714.decision.theory;
+package com.lemmon714.decision.theory.algorithm;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
+/**
+ * Brown–Robinson method
+ */
 public class BrownRobinsonMethodImpl {
 
     private static final double CONVERGENCE_DELTA = 0.01;
@@ -65,6 +69,8 @@ public class BrownRobinsonMethodImpl {
         System.out.println(String.format("Step: %d, Higher: %8.4f, Lower: %8.4f, Avg: %8.4f", iteration, high, low, avg));
         System.out.println("player 1 results: " + Arrays.toString(firstPlayerResVector));
         System.out.println("player 2 results: " + Arrays.toString(secondPlayerResVector));
+        System.out.println("player 1 probability: " + (float)firstPlayerResVector.length / IntStream.of(firstPlayerResVector).sum());
+        System.out.println("player 2 probability: " + (float)secondPlayerResVector.length / IntStream.of(secondPlayerResVector).sum());
 
         boolean converged = Math.abs(prev - avg) < CONVERGENCE_DELTA;
         return new Object[]{converged, avg};
